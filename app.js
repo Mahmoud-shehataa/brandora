@@ -13,7 +13,7 @@ const content = {
     },
     langToggle: 'العربية',
     hero: {
-      badge: 'Digital Marketing Agency · KSA',
+      badge: 'Digital Marketing Agency',
       titleLine1: 'WE TURN',
       titleGlow: 'YOUR BRAND',
       titleLine3: 'INTO LEGEND',
@@ -191,7 +191,7 @@ const content = {
     },
     langToggle: 'EN',
     hero: {
-      badge: 'وكالة تسويق رقمي · المملكة العربية السعودية',
+      badge: 'وكالة تسويق رقمي',
       titleLine1: 'نُحوّل',
       titleGlow: 'إبداعك',
       titleLine3: 'إلى نمو',
