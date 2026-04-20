@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Brandora is a story-led marketing agency building bold digital presence in Arabic and English."
+    />
+    <title>Brandora | Story-led marketing agency</title>
+    <link rel="icon" type="image/png" href="assets/brandora-logo.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-glow glow-1" aria-hidden="true"></div>
+    <div class="page-glow glow-2" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="container header-shell">
+        <a class="brand" href="#top" aria-label="Brandora home">
+          <img src="assets/brandora-logo.png" alt="Brandora logo" />
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <a href="#top" data-nav="home">Home</a>
+          <a href="#services" data-nav="services">Services</a>
+          <a href="#story" data-nav="story">Story</a>
+          <a href="#advantage" data-nav="advantage">Why Brandora</a>
+          <a href="#contact" data-nav="contact">Contact</a>
+        </nav>
+        
+        
+        <div class="header-actions">
+          <button id="langToggle" class="ghost-btn" type="button" aria-label="Switch language">
+            العربية
+          </button>
+          <a class="primary-btn header-cta" href="#contact" data-nav="cta">Start your story</a>
+          <button
+            id="menuToggle"
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobilePanel"
+            aria-label="Toggle menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobilePanel" class="mobile-panel" aria-hidden="true">
+        <a href="#top" data-nav="home">Home</a>
+        <a href="#services" data-nav="services">Services</a>
+        <a href="#story" data-nav="story">Story</a>
+        <a href="#advantage" data-nav="advantage">Why Brandora</a>
+        <a href="#contact" data-nav="contact">Contact</a>
+        <a class="mobile-cta" href="#contact" data-nav="cta">Start your story</a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero section-pad" aria-labelledby="heroHeadline">
+        <div class="container hero-shell">
+          <div class="blob blob-1" aria-hidden="true"></div>
+          <div class="blob blob-2" aria-hidden="true"></div>
+          <div class="hero-grid-lines" aria-hidden="true"></div>
+
+          <div class="hero-copy reveal">
+            <p class="hero-badge">
+              <span class="dot" aria-hidden="true"></span>
+              <span id="heroBadge"></span>
+            </p>
+
+            <h1 class="hero-headline" id="heroHeadline">
+              <span id="heroTitleLine1"></span>
+              <span class="line-glow" id="heroTitleGlow"></span>
+              <span id="heroTitleLine3"></span>
+            </h1>
+
+            <p class="hero-sub" id="heroText"></p>
+
+            <div class="hero-cta-group">
+              <a class="hero-btn-primary" href="#contact" id="heroPrimary"></a>
+              <a class="hero-btn-ghost" href="#services" id="heroSecondary"></a>
+            </div>
+
+            <div class="hero-stats" id="heroStats" aria-label="Brandora highlights"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="hero-marquee" aria-hidden="true">
+        <div class="hero-marquee-track" id="heroMarqueeTrack"></div>
+      </div>
+
+      <section class="section-pad intro-section" id="services">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="section-kicker" id="servicesKicker"></p>
+            <h2 id="servicesTitle"></h2>
+            <p id="servicesText"></p>
+          </div>
+
+          <div class="services-layout">
+            <aside class="services-panel reveal">
+              <p class="panel-kicker" id="servicesPanelOverline"></p>
+              <h3 id="servicesPanelTitle"></h3>
+              <p id="servicesPanelText"></p>
+              <div class="mini-list" id="servicesPanelList"></div>
+            </aside>
+
+            <div class="services-grid" id="servicesGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad story-section" id="story">
+        <div class="container story-grid">
+          <div class="story-copy reveal">
+            <p class="section-kicker" id="storyKicker"></p>
+            <h2 id="storyTitle"></h2>
+            <p id="storyP1"></p>
+            <p id="storyP2"></p>
+            <div class="story-quote" id="storyQuote"></div>
+          </div>
+
+          <div class="story-visual reveal" aria-hidden="true">
+            <div class="story-visual-card">
+              <div class="stack-row stack-row-top">
+                <span class="stack-block"></span>
+                <span class="stack-block"></span>
+                <span class="stack-block"></span>
+              </div>
+              <div class="stack-row stack-row-bottom">
+                <span class="stack-block highlight"></span>
+                <span class="stack-block"></span>
+              </div>
+              <div class="story-line"></div>
+              <div class="story-visual-copy">
+                <strong id="storyVisualTag"></strong>
+                <p id="storyVisualText"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad dark-section" id="advantage">
+        <div class="container">
+          <div class="dark-panel">
+            <div class="section-head light reveal">
+              <p class="section-kicker" id="whyKicker"></p>
+              <h2 id="whyTitle"></h2>
+              <p id="whyText"></p>
+            </div>
+
+            <div class="why-grid" id="whyGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad process-section">
+        <div class="container process-layout">
+          <div class="process-panel reveal">
+            <p class="section-kicker" id="processKicker"></p>
+            <h2 id="processTitle"></h2>
+            <p id="processText"></p>
+            <div class="process-list" id="processList"></div>
+          </div>
+
+          <div class="social-panel reveal">
+            <p class="section-kicker" id="socialKicker"></p>
+            <h2 id="socialTitle"></h2>
+            <p id="socialText"></p>
+            <div class="social-grid" id="socialGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pad contact-section" id="contact">
+        <div class="container">
+          <div class="contact-card reveal">
+            <div class="contact-copy">
+              <p class="section-kicker" id="contactKicker"></p>
+              <h2 id="contactTitle"></h2>
+              <p id="contactText"></p>
+              <div class="cta-row">
+                <a class="primary-btn" href="tel:+966574636463" id="contactButton"></a>
+              </div>
+            </div>
+
+            <div class="contact-meta">
+              <div class="meta-block">
+                <span class="meta-label" id="phoneLabel"></span>
+                <a class="meta-value" href="tel:+966574636463">+966 57 463 6463</a>
+              </div>
+
+              <div class="meta-block">
+                <span class="meta-label" id="handlesLabel"></span>
+                <p class="meta-value" id="handlesText"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div class="footer-brand">
+          <img src="assets/brandora-logo.png" alt="Brandora logo" />
+          <p id="footerNote"></p>
+        </div>
+        <small id="footerCopyright"></small>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

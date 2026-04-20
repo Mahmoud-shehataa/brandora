@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brandora | وكالة التسويق الرقمي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Bebas+Neue&family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-deep: #030918;
+    --navy-mid: #071228;
+    --navy-light: #0d1f47;
+    --blue-brand: #1a3a8f;
+    --cyan: #00c8c0;
+    --cyan-glow: #00e5db;
+    --teal-mid: #0098a0;
+    --white: #f0f4ff;
+    --white-dim: rgba(240,244,255,0.65);
+    --white-faint: rgba(240,244,255,0.12);
+    --accent-gold: #c9a84c;
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy-deep);
+    color: var(--white);
+    font-family: 'Tajawal', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  body.ltr {
+    font-family: 'DM Sans', sans-serif;
+    direction: ltr;
+  }
+
+  /* ─── NOISE TEXTURE ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── MESH BLOBS ─── */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blob-1 { width: 600px; height: 600px; background: radial-gradient(circle, #0d3b8e55, transparent 70%); top: -150px; right: -100px; }
+  .blob-2 { width: 500px; height: 500px; background: radial-gradient(circle, #00c8c033, transparent 70%); top: 200px; left: -150px; }
+  .blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #071d6044, transparent 70%); top: 50%; right: -80px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(20px);
+    background: rgba(3,9,24,0.7);
+    border-bottom: 1px solid rgba(0,200,192,0.08);
+    transition: var(--transition);
+  }
+
+  nav.scrolled {
+    padding: 12px 60px;
+    background: rgba(3,9,24,0.95);
+    border-bottom-color: rgba(0,200,192,0.15);
+  }
+
+  .nav-logo img {
+    height: 38px;
+    filter: drop-shadow(0 0 12px rgba(0,200,192,0.3));
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--white-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--cyan);
+    transform: scaleX(0);
+    transition: var(--transition);
+    transform-origin: right;
+  }
+
+  [dir="ltr"] .nav-links a::after { transform-origin: left; }
+
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+
+  .lang-toggle {
+    background: var(--white-faint);
+    border: 1px solid rgba(0,200,192,0.2);
+    color: var(--cyan);
+    padding: 6px 16px;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    transition: var(--transition);
+    letter-spacing: 1px;
+  }
+
+  .lang-toggle:hover {
+    background: rgba(0,200,192,0.15);
+    border-color: var(--cyan);
+  }
+
+  .btn-nav {
+    background: linear-gradient(135deg, var(--cyan), #0095e0);
+    color: var(--navy-deep);
+    padding: 10px 24px;
+    border-radius: 100px;
+    border: none;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 20px rgba(0,200,192,0.3);
+  }
+
+  .btn-nav:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,200,192,0.5);
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    overflow: hidden;
+  }
+
+  .hero-grid-lines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,200,192,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,200,192,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,200,192,0.08);
+    border: 1px solid rgba(0,200,192,0.25);
+    border-radius: 100px;
+    padding: 8px 20px;
+    margin-bottom: 36px;
+    font-size: 13px;
+    color: var(--cyan);
+    letter-spacing: 2px;
+    font-weight: 600;
+    animation: fadeInDown 0.8s ease both;
+  }
+
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-headline {
+    font-size: clamp(52px, 8vw, 110px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 28px;
+    animation: fadeInUp 0.9s 0.1s ease both;
+    position: relative;
+    z-index: 1;
+  }
+
+  body.ltr .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(70px, 10vw, 140px);
+    letter-spacing: 2px;
+  }
+
+  .hero-headline .line-glow {
+    display: block;
+    background: linear-gradient(90deg, #fff 0%, var(--cyan) 45%, #4facfe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--white-dim);
+    max-width: 600px;
+    margin: 0 auto 48px;
+    font-weight: 400;
+    line-height: 1.8;
+    animation: fadeInUp 0.9s 0.2s ease both;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.9s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--cyan) 0%, #0095e0 100%);
+    color: var(--navy-deep);
+    padding: 16px 40px;
+    border-radius: 100px;
+    border: none;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 8px 30px rgba(0,200,192,0.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 50px rgba(0,200,192,0.6);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    padding: 16px 40px;
+    border-radius: 100px;
+    border: 1px solid rgba(240,244,255,0.2);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: rgba(0,200,192,0.05);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 1px solid var(--white-faint);
+    animation: fadeInUp 0.9s 0.5s ease both;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-number {
+    font-size: 42px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #fff, var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+  }
+
+  body.ltr .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 56px; }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--white-dim);
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── MARQUEE ─── */
+  .marquee-section {
+    position: relative;
+    overflow: hidden;
+    padding: 28px 0;
+    background: linear-gradient(90deg, rgba(0,200,192,0.08), rgba(0,149,224,0.08));
+    border-top: 1px solid rgba(0,200,192,0.12);
+    border-bottom: 1px solid rgba(0,200,192,0.12);
+    margin: 0;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 60px;
+    white-space: nowrap;
+    animation: marquee 25s linear infinite;
+    width: max-content;
+  }
+
+  body[dir="rtl"] .marquee-track { animation: marquee-rtl 25s linear infinite; }
+
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes marquee-rtl { from { transform: translateX(0); } to { transform: translateX(50%); } }
+
+  .marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white-dim);
+    letter-spacing: 1px;
+  }
+
+  .marquee-item .sep { color: var(--cyan); font-size: 20px; }
+
+  /* ─── SECTIONS ─── */
+  section { position: relative; z-index: 1; }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 60px;
+  }
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 24px; height: 1px;
+    background: var(--cyan);
+  }
+
+  .section-title {
+    font-size: clamp(38px, 5vw, 68px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+
+  body.ltr .section-title { font-family: 'Playfair Display', serif; }
+
+  .section-title em {
+    font-style: normal;
+    background: linear-gradient(90deg, var(--cyan), #4facfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─── ABOUT ─── */
+  #about .section-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+    height: 480px;
+  }
+
+  .about-card {
+    position: absolute;
+    background: var(--navy-light);
+    border: 1px solid rgba(0,200,192,0.15);
+    border-radius: 20px;
+    padding: 28px;
+    transition: var(--transition);
+  }
+
+  .about-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0,200,192,0.4);
+    box-shadow: 0 20px 60px rgba(0,200,192,0.1);
+  }
+
+  .about-card-main {
+    width: 100%;
+    top: 0; left: 0;
+    background: linear-gradient(135deg, var(--navy-light), #0a1d4a);
+    overflow: hidden;
+  }
+
+  .about-card-main::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,200,192,0.15), transparent 70%);
+  }
+
+  .about-icon-large {
+    font-size: 52px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .about-card-main h3 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .about-card-main p {
+    font-size: 14px;
+    color: var(--white-dim);
+    line-height: 1.8;
+  }
+
+  .about-card-float {
+    width: 180px;
+    bottom: 40px;
+    right: -20px;
+    background: linear-gradient(135deg, rgba(0,200,192,0.15), rgba(0,149,224,0.1));
+    border-color: rgba(0,200,192,0.3);
+    text-align: center;
+    padding: 20px;
+  }
+
+  .about-card-float .num {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--cyan);
+  }
+
+  body.ltr .about-card-float .num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; }
+
+  .about-card-float .label {
+    font-size: 12px;
+    color: var(--white-dim);
+    margin-top: 4px;
+  }
+
+  .about-text p {
+    font-size: 17px;
+    color: var(--white-dim);
+    line-height: 2;
+    margin-bottom: 20px;
+  }
+
+  .about-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .pillar {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+    background: var(--white-faint);
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: var(--transition);
+  }
+
+  .pillar:hover {
+    border-color: rgba(0,200,192,0.2);
+    background: rgba(0,200,192,0.05);
+  }
+
+  .pillar-icon {
+    font-size: 22px;
+    min-width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pillar-text h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .pillar-text p { font-size: 13px; color: var(--white-dim); }
+
+  /* ─── SERVICES ─── */
+  #services { background: rgba(7,18,40,0.6); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .service-card {
+    background: var(--navy-light);
+    border: 1px solid var(--white-faint);
+    border-radius: 20px;
+    padding: 36px 30px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cyan), #0095e0);
+    transform: scaleX(0);
+    transition: var(--transition);
+    transform-origin: left;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0,200,192,0.25);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 40px rgba(0,200,192,0.06);
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-card.featured {
+    grid-row: span 2;
+    background: linear-gradient(160deg, #0d2559 0%, #071228 60%, #030a1e 100%);
+    border-color: rgba(0,200,192,0.3);
+  }
+
+  .service-card.featured::before { transform: scaleX(1); }
+
+  .service-num {
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 3px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .service-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: rgba(0,200,192,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+    transition: var(--transition);
+    border: 1px solid rgba(0,200,192,0.2);
+  }
+
+  .service-card:hover .service-icon {
+    background: rgba(0,200,192,0.15);
+    transform: rotate(-5deg) scale(1.1);
+  }
+
+  .service-card h3 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .service-card p {
+    font-size: 14px;
+    color: var(--white-dim);
+    line-height: 1.8;
+  }
+
+  .service-card.featured h3 { font-size: 26px; }
+  .service-card.featured p { font-size: 15px; }
+
+  .service-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    color: var(--cyan);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── WHY US ─── */
+  #why .section-inner { padding-bottom: 120px; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--white-faint);
+  }
+
+  .why-item {
+    padding: 48px 44px;
+    background: var(--navy-light);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,200,192,0.07), transparent);
+    opacity: 0;
+    transition: var(--transition);
+  }
+
+  .why-item:hover { background: #0e244f; }
+  .why-item:hover::after { opacity: 1; }
+
+  .why-num {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1;
+    color: rgba(0,200,192,0.08);
+    position: absolute;
+    top: 16px;
+    right: 24px;
+  }
+
+  body.ltr .why-num { font-family: 'Bebas Neue', sans-serif; right: auto; left: 24px; }
+  body[dir="rtl"] .why-num { right: 24px; left: auto; }
+
+  .why-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+
+  .why-item h3 {
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .why-item p {
+    font-size: 14px;
+    color: var(--white-dim);
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── CTA BAND ─── */
+  #cta {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .cta-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px 120px;
+  }
+
+  .cta-band {
+    background: linear-gradient(135deg, #0a2060 0%, #052550 30%, #06393a 100%);
+    border-radius: 32px;
+    padding: 80px 80px;
+    text-align: center;
+    border: 1px solid rgba(0,200,192,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,200,192,0.15), transparent 70%);
+  }
+
+  .cta-band h2 {
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    position: relative;
+    z-index: 1;
+  }
+
+  body.ltr .cta-band h2 { font-family: 'Playfair Display', serif; }
+
+  .cta-band p {
+    font-size: 18px;
+    color: var(--white-dim);
+    margin-bottom: 44px;
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-contact-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 40px;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+
+  .contact-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--white-faint);
+    border: 1px solid rgba(0,200,192,0.2);
+    border-radius: 100px;
+    padding: 10px 22px;
+    font-size: 15px;
+    color: var(--white);
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: 500;
+  }
+
+  .contact-chip:hover {
+    background: rgba(0,200,192,0.12);
+    border-color: var(--cyan);
+    transform: translateY(-2px);
+  }
+
+  .contact-chip .chip-icon { font-size: 18px; }
+
+  /* ─── SOCIAL ─── */
+  #social .section-inner { padding-top: 0; }
+
+  .social-title {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--white-dim);
+    margin-bottom: 36px;
+    letter-spacing: 1px;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .social-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 100px;
+    background: var(--white-faint);
+    border: 1px solid var(--white-faint);
+    color: var(--white-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+  }
+
+  .social-card:hover {
+    background: rgba(0,200,192,0.1);
+    border-color: var(--cyan);
+    color: var(--white);
+    transform: translateY(-3px);
+  }
+
+  .social-card .s-icon { font-size: 20px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 40px 60px;
+    border-top: 1px solid var(--white-faint);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-logo img { height: 28px; opacity: 0.8; }
+
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(240,244,255,0.4);
+    text-align: center;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(240,244,255,0.4);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .footer-links a:hover { color: var(--cyan); }
+
+  /* ─── SCROLL LINE ─── */
+  .scroll-line {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), #0095e0);
+    z-index: 999;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px var(--cyan);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Content switching */
+  [data-en] [data-show="ar"],
+  [data-ar] [data-show="en"] {
+    display: none !important;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    nav.scrolled { padding: 12px 24px; }
+    .nav-links { display: none; }
+    .section-inner { padding: 70px 28px; }
+    #about .section-inner { grid-template-columns: 1fr; }
+    .about-visual { height: 260px; margin-bottom: 20px; }
+    .about-card-float { right: 0; bottom: -20px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card.featured { grid-row: auto; }
+    .why-grid { grid-template-columns: 1fr; }
+    footer { padding: 32px 24px; flex-direction: column; text-align: center; }
+    .cta-band { padding: 52px 28px; }
+    .cta-inner { padding: 0 24px 80px; }
+    .hero-stats { gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div class="scroll-line" id="scrollLine"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a class="nav-logo" href="#"><img src="/mnt/user-data/uploads/logo.png" alt="Brandora"></a>
+  <ul class="nav-links">
+    <li><a href="#about" data-show="ar">من نحن</a><a href="#about" data-show="en" style="display:none">About</a></li>
+    <li><a href="#services" data-show="ar">خدماتنا</a><a href="#services" data-show="en" style="display:none">Services</a></li>
+    <li><a href="#why" data-show="ar">لماذا براندورا</a><a href="#why" data-show="en" style="display:none">Why Us</a></li>
+    <li><a href="#cta" data-show="ar">تواصل معنا</a><a href="#cta" data-show="en" style="display:none">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-toggle" id="langBtn" onclick="toggleLang()">EN</button>
+    <a href="tel:+966574636463" class="btn-nav" data-show="ar">تواصل الآن</a>
+    <a href="tel:+966574636463" class="btn-nav" data-show="en" style="display:none">Contact Us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-badge">
+    <span class="dot"></span>
+    <span data-show="ar">وكالة تسويق رقمي · المملكة العربية السعودية</span>
+    <span data-show="en" style="display:none">Digital Marketing Agency · KSA</span>
+  </div>
+
+  <h1 class="hero-headline">
+    <span data-show="ar">
+      <span>نُحوّل</span>
+      <span class="line-glow">إبداعك</span>
+      <span>إلى نمو</span>
+    </span>
+    <span data-show="en" style="display:none">
+      <span>WE TURN</span>
+      <span class="line-glow">YOUR BRAND</span>
+      <span>INTO LEGEND</span>
+    </span>
+  </h1>
+
+  <p class="hero-sub">
+    <span data-show="ar">في براندورا، لا نبيع إعلانات — نصنع قصصاً تصل إلى القلب، وحضوراً رقمياً يُحرّك الجمهور ويصنع الفارق.</span>
+    <span data-show="en" style="display:none">At Brandora, we don't just run ads — we craft stories that reach hearts and build digital presences that move audiences and create real impact.</span>
+  </p>
+
+  <div class="hero-cta-group">
+    <a href="#cta" class="btn-primary">
+      <span data-show="ar">ابدأ قصتك معنا</span>
+      <span data-show="en" style="display:none">Start Your Journey</span>
+    </a>
+    <a href="#services" class="btn-ghost">
+      <span data-show="ar">اكتشف خدماتنا</span>
+      <span data-show="en" style="display:none">Explore Services</span>
+    </a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">+50</div>
+      <div class="stat-label"><span data-show="ar">مشروع ناجح</span><span data-show="en" style="display:none">Successful Projects</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">3X</div>
+      <div class="stat-label"><span data-show="ar">متوسط نمو العملاء</span><span data-show="en" style="display:none">Avg. Client Growth</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label"><span data-show="ar">شغف بما نفعل</span><span data-show="en" style="display:none">Passion in What We Do</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">KSA</div>
+      <div class="stat-label"><span data-show="ar">مقرنا المملكة العربية السعودية</span><span data-show="en" style="display:none">Based in Saudi Arabia</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item"><span data-show="ar">استراتيجية المحتوى</span><span data-show="en" style="display:none">Content Strategy</span> <span class="sep">✦</span></span>
+    <span class="marquee-item"><span data-show="ar">إدارة السوشيال ميديا</span><span data-show="en" style="display:none">Social Media Management</span> <span class="sep">✦</span></span>
+    <span class="marquee-item"><span data-show="ar">الإعلانات المدفوعة</span><span data-show="en" style="display:none">Paid Advertising</span> <span class="sep">✦</span></span>
+    <span class="marquee-item"><span data-show="ar">الهوية البصرية</span><span data-show="en" style="display:none">Visual Identity</span> <span class="sep">✦</span></span>
+    <span class="marquee-item"><span data-show="ar">التصميم الإبداعي</span><span data-show="en" style="display:none">Creative Design</span> <span class="sep">✦</span></span>
+    <span class="marquee-item"><span data-show="ar">كتابة المحتوى</span><span data-show="en" style="display:none">Copywriting</span> <span class="sep">✦</span></span>
+    <span class="marquee-item"><span data-show="ar">استراتيجية المحتوى</span><span data-show="en" style="display:none">Content Strategy</span> <span class="sep">✦</span></span>
+    <span class="marquee-item"><span data-show="ar">إدارة السوشيال ميديا</span><span data-show="en" style="display:none">Social Media Management</span> <span class="sep">✦</span></span>
+    <span class="marquee-item"><span data-show="ar">الإعلانات المدفوعة</span><span data-show="en" style="display:none">Paid Advertising</span> <span class="sep">✦</span></span>
+    <span class="marquee-item"><span data-show="ar">الهوية البصرية</span><span data-show="en" style="display:none">Visual Identity</span> <span class="sep">✦</span></span>
+    <span class="marquee-item"><span data-show="ar">التصميم الإبداعي</span><span data-show="en" style="display:none">Creative Design</span> <span class="sep">✦</span></span>
+    <span class="marquee-item"><span data-show="ar">كتابة المحتوى</span><span data-show="en" style="display:none">Copywriting</span> <span class="sep">✦</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <!-- Visual side -->
+    <div class="about-visual reveal">
+      <div class="about-card about-card-main" style="height: 380px;">
+        <span class="about-icon-large">🌊</span>
+        <h3>
+          <span data-show="ar">شرارة إبداعية تنتظر أن تتحول إلى لهب</span>
+          <span data-show="en" style="display:none">A Creative Spark Waiting to Ignite</span>
+        </h3>
+        <p>
+          <span data-show="ar">نؤمن أن كل مشروع — سواء كان صغيراً ناشئاً أو علامة تجارية كبيرة — لديه شرارة إبداعية فريدة. مهمتنا تحويلها إلى حضور رقمي قوي ومربح.</span>
+          <span data-show="en" style="display:none">We believe every project — whether a small startup or a major brand — has a unique creative spark. Our mission is to turn it into a powerful, profitable digital presence.</span>
+        </p>
+      </div>
+      <div class="about-card about-card-float">
+        <div class="num">عائلة</div>
+        <div class="label" data-show="ar">نعمل كفريق واحد</div>
+        <div class="label" data-show="en" style="display:none">One Team. One Family.</div>
+      </div>
+    </div>
+
+    <!-- Text side -->
+    <div class="about-text reveal">
+      <div class="section-tag">
+        <span data-show="ar">من نحن</span>
+        <span data-show="en" style="display:none">About Us</span>
+      </div>
+      <h2 class="section-title">
+        <span data-show="ar">التسويق <em>قصة</em> تُروى بصدق</span>
+        <span data-show="en" style="display:none">Marketing Is a <em>Story</em> Told Honestly</span>
+      </h2>
+      <p>
+        <span data-show="ar">في براندورا نؤمن أن التسويق الناجح ليس مجرد إعلانات، بل قصة تُروى بصدق وتصل إلى القلب.</span>
+        <span data-show="en" style="display:none">At Brandora, we believe successful marketing is not just ads — it's a story told honestly, one that truly reaches the heart.</span>
+      </p>
+      <p>
+        <span data-show="ar">نحن فريق من المبدعين والمصممين والكتّاب الذين يعشقون ما يفعلونه. نعمل معاً كعائلة واحدة لنصنع حملات تسويقية لا تُنسى، تُلامس قلوب الجمهور وتحركهم لاتخاذ إجراء.</span>
+        <span data-show="en" style="display:none">We are a team of creatives, designers, and writers who love what they do. We work as one family to create unforgettable campaigns that touch hearts and drive action.</span>
+      </p>
+
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">🎯</div>
+          <div class="pillar-text">
+            <h4><span data-show="ar">فريق متخصص وشغوف</span><span data-show="en" style="display:none">Specialized & Passionate Team</span></h4>
+            <p><span data-show="ar">يتعامل مع مشروعك كأنه مشروعه الخاص</span><span data-show="en" style="display:none">We treat your project as if it were our own</span></p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🧠</div>
+          <div class="pillar-text">
+            <h4><span data-show="ar">خبرة واسعة ومتنوعة</span><span data-show="en" style="display:none">Deep Cross-Industry Expertise</span></h4>
+            <p><span data-show="ar">مرونة وفهم عميق لمختلف الصناعات</span><span data-show="en" style="display:none">Flexibility and insight across diverse sectors</span></p>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">✨</div>
+          <div class="pillar-text">
+            <h4><span data-show="ar">نهج إبداعي حديث</span><span data-show="en" style="display:none">Modern Creative Approach</span></h4>
+            <p><span data-show="ar">أحدث أدوات التسويق مع اللمسة الإنسانية</span><span data-show="en" style="display:none">Cutting-edge tools combined with the human touch</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div style="text-align:center" class="reveal">
+      <div class="section-tag" style="justify-content:center">
+        <span data-show="ar">ما نقدمه</span>
+        <span data-show="en" style="display:none">What We Offer</span>
+      </div>
+      <h2 class="section-title">
+        <span data-show="ar">خدماتنا <em>الشاملة</em></span>
+        <span data-show="en" style="display:none">Our <em>Full Suite</em> of Services</span>
+      </h2>
+      <p style="color:var(--white-dim);max-width:560px;margin:16px auto 0;font-size:16px">
+        <span data-show="ar">كل ما تحتاجه لتنمو رقمياً — في مكان واحد</span>
+        <span data-show="en" style="display:none">Everything you need to grow digitally — in one place</span>
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Featured -->
+      <div class="service-card featured reveal">
+        <span class="service-num">01</span>
+        <div class="service-icon">📱</div>
+        <h3>
+          <span data-show="ar">إدارة السوشيال ميديا</span>
+          <span data-show="en" style="display:none">Social Media Management</span>
+        </h3>
+        <p>
+          <span data-show="ar">ندير حساباتك على فيسبوك، إنستاغرام، سناب شات، تويتر وتيك توك بمحتوى إبداعي مدروس، يبني جمهوراً متفاعلاً ويُنمي علامتك التجارية بشكل متسق ومؤثر.</span>
+          <span data-show="en" style="display:none">We manage your Facebook, Instagram, Snapchat, Twitter and TikTok accounts with thoughtful creative content that builds an engaged audience and grows your brand consistently and powerfully.</span>
+        </p>
+        <div class="service-arrow">
+          <span data-show="ar">اعرف أكثر ←</span>
+          <span data-show="en" style="display:none">Learn more →</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card reveal">
+        <span class="service-num">02</span>
+        <div class="service-icon">🎨</div>
+        <h3>
+          <span data-show="ar">التصميم البصري</span>
+          <span data-show="en" style="display:none">Visual Design</span>
+        </h3>
+        <p>
+          <span data-show="ar">من الهوية البصرية إلى منشورات السوشيال — تصاميم تعكس شخصية علامتك وتترك أثراً لا يُنسى.</span>
+          <span data-show="en" style="display:none">From visual identity to social posts — designs that reflect your brand personality and leave a lasting impression.</span>
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card reveal">
+        <span class="service-num">03</span>
+        <div class="service-icon">📊</div>
+        <h3>
+          <span data-show="ar">الإعلانات المدفوعة</span>
+          <span data-show="en" style="display:none">Paid Advertising</span>
+        </h3>
+        <p>
+          <span data-show="ar">حملات إعلانية مدفوعة مُحسّنة على جميع المنصات — نُوصل رسالتك لجمهورك الصحيح بأعلى عائد استثماري.</span>
+          <span data-show="en" style="display:none">Optimized paid campaigns across all platforms — delivering your message to the right audience with maximum ROI.</span>
+        </p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="service-card reveal">
+        <span class="service-num">04</span>
+        <div class="service-icon">✍️</div>
+        <h3>
+          <span data-show="ar">استراتيجية المحتوى والكتابة</span>
+          <span data-show="en" style="display:none">Content Strategy & Copywriting</span>
+        </h3>
+        <p>
+          <span data-show="ar">محتوى مكتوب بعناية يصل إلى الجمهور المستهدف ويحوّل القراء إلى عملاء فعليين.</span>
+          <span data-show="en" style="display:none">Carefully crafted content that reaches your target audience and converts readers into real customers.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <div class="section-tag" style="justify-content:center">
+        <span data-show="ar">لماذا براندورا</span>
+        <span data-show="en" style="display:none">Why Brandora</span>
+      </div>
+      <h2 class="section-title">
+        <span data-show="ar">ما يجعلنا <em>مختلفين</em></span>
+        <span data-show="en" style="display:none">What Makes Us <em>Different</em></span>
+      </h2>
+    </div>
+
+    <div class="why-grid reveal">
+      <div class="why-item">
+        <span class="why-num">01</span>
+        <span class="why-icon">🔥</span>
+        <h3><span data-show="ar">شغف حقيقي بما نفعله</span><span data-show="en" style="display:none">Genuine Passion for Our Work</span></h3>
+        <p><span data-show="ar">نتعامل مع كل مشروع كأنه مشروعنا الخاص. شغفنا ليس شعاراً — بل ينعكس في كل تفصيلة نصنعها.</span><span data-show="en" style="display:none">We treat every project as if it were our own. Our passion isn't a slogan — it reflects in every detail we create.</span></p>
+      </div>
+      <div class="why-item">
+        <span class="why-num">02</span>
+        <span class="why-icon">🌐</span>
+        <h3><span data-show="ar">تغطية شاملة لكل منصة</span><span data-show="en" style="display:none">Full Cross-Platform Coverage</span></h3>
+        <p><span data-show="ar">من إنستاغرام وسناب شات إلى تيك توك وتويتر — نبني حضوراً موحداً ومؤثراً على كل قناة.</span><span data-show="en" style="display:none">From Instagram and Snapchat to TikTok and Twitter — we build a unified, impactful presence on every channel.</span></p>
+      </div>
+      <div class="why-item">
+        <span class="why-num">03</span>
+        <span class="why-icon">🎯</span>
+        <h3><span data-show="ar">استراتيجيات مخصصة لك</span><span data-show="en" style="display:none">Strategies Tailored to You</span></h3>
+        <p><span data-show="ar">لا قوالب جاهزة. كل استراتيجية نبنيها مصممة حسب مجالك وجمهورك وأهدافك تحديداً.</span><span data-show="en" style="display:none">No cookie-cutter templates. Every strategy we build is designed for your specific industry, audience, and goals.</span></p>
+      </div>
+      <div class="why-item">
+        <span class="why-num">04</span>
+        <span class="why-icon">📈</span>
+        <h3><span data-show="ar">نتائج حقيقية وقابلة للقياس</span><span data-show="en" style="display:none">Real, Measurable Results</span></h3>
+        <p><span data-show="ar">نؤمن بالأرقام والنتائج لا بالوعود الفارغة. كل حملة نُطلقها مربوطة بمؤشرات أداء واضحة وقابلة للتتبع.</span><span data-show="en" style="display:none">We believe in numbers and results, not empty promises. Every campaign we launch is tied to clear, trackable performance indicators.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <div class="cta-band reveal">
+      <div class="blob-3" style="position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(0,200,192,0.1),transparent 70%);bottom:-100px;left:50%;transform:translateX(-50%);border-radius:50%;filter:blur(60px);"></div>
+      <h2>
+        <span data-show="ar">جاهز تبدأ <em style="font-style:normal;background:linear-gradient(90deg,var(--cyan),#4facfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">قصتك</em> معنا؟</span>
+        <span data-show="en" style="display:none">Ready to Start <em style="font-style:italic;background:linear-gradient(90deg,var(--cyan),#4facfe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Your Story</em> With Us?</span>
+      </h2>
+      <p>
+        <span data-show="ar">دعنا نحوّل إبداعك إلى نمو حقيقي. تواصل معنا اليوم.</span>
+        <span data-show="en" style="display:none">Let us turn your creativity into real growth. Reach out today.</span>
+      </p>
+      <a href="tel:+966574636463" class="btn-primary" style="position:relative;z-index:1">
+        <span data-show="ar">تواصل معنا الآن 📞</span>
+        <span data-show="en" style="display:none">Call Us Now 📞</span>
+      </a>
+      <div class="cta-contact-info">
+        <a href="tel:+966574636463" class="contact-chip">
+          <span class="chip-icon">📞</span>
+          <span>+966 57 463 6463</span>
+        </a>
+        <a href="https://instagram.com/brandora.kas" target="_blank" class="contact-chip">
+          <span class="chip-icon">📸</span>
+          <span>@brandora.kas</span>
+        </a>
+        <a href="https://tiktok.com/@Brandora_ksa" target="_blank" class="contact-chip">
+          <span class="chip-icon">🎵</span>
+          <span>@Brandora_ksa</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<section id="social">
+  <div class="section-inner" style="padding-top:40px;">
+    <p class="social-title">
+      <span data-show="ar">تابعنا على منصاتنا</span>
+      <span data-show="en" style="display:none">Follow Us on Our Platforms</span>
+    </p>
+    <div class="social-links">
+      <a href="https://facebook.com/brandora.kas" target="_blank" class="social-card">
+        <span class="s-icon">📘</span> Facebook · brandora.kas
+      </a>
+      <a href="https://instagram.com/brandora.kas" target="_blank" class="social-card">
+        <span class="s-icon">📸</span> Instagram · brandora.kas
+      </a>
+      <a href="https://snapchat.com/add/brandora.kas" target="_blank" class="social-card">
+        <span class="s-icon">👻</span> Snapchat · brandora.kas
+      </a>
+      <a href="https://twitter.com/Brandora_ksa" target="_blank" class="social-card">
+        <span class="s-icon">🐦</span> X · Brandora_ksa
+      </a>
+      <a href="https://tiktok.com/@Brandora_ksa" target="_blank" class="social-card">
+        <span class="s-icon">🎵</span> TikTok · Brandora_ksa
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="/mnt/user-data/uploads/logo.png" alt="Brandora">
+  </div>
+  <p class="footer-copy">
+    <span data-show="ar">© 2025 براندورا · جميع الحقوق محفوظة · المملكة العربية السعودية</span>
+    <span data-show="en" style="display:none">© 2025 Brandora · All Rights Reserved · Saudi Arabia</span>
+  </p>
+  <div class="footer-links">
+    <a href="#hero"><span data-show="ar">الرئيسية</span><span data-show="en" style="display:none">Home</span></a>
+    <a href="#services"><span data-show="ar">خدمات</span><span data-show="en" style="display:none">Services</span></a>
+    <a href="#cta"><span data-show="ar">تواصل</span><span data-show="en" style="display:none">Contact</span></a>
+  </div>
+</footer>
+
+<script>
+  // ─── Language toggle ───
+  let isAr = true;
+
+  function toggleLang() {
+    isAr = !isAr;
+    const html = document.documentElement;
+    const body = document.body;
+    const btn = document.getElementById('langBtn');
+
+    const enEls = document.querySelectorAll('[data-show="en"]');
+    const arEls = document.querySelectorAll('[data-show="ar"]');
+
+    if (isAr) {
+      html.setAttribute('lang', 'ar');
+      html.setAttribute('dir', 'rtl');
+      body.classList.remove('ltr');
+      btn.textContent = 'EN';
+      enEls.forEach(el => el.style.display = 'none');
+      arEls.forEach(el => el.style.display = '');
+    } else {
+      html.setAttribute('lang', 'en');
+      html.setAttribute('dir', 'ltr');
+      body.classList.add('ltr');
+      btn.textContent = 'عربي';
+      arEls.forEach(el => el.style.display = 'none');
+      enEls.forEach(el => el.style.display = '');
+    }
+  }
+
+  // ─── Scroll progress ───
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    document.getElementById('scrollLine').style.width = progress + '%';
+
+    const nav = document.getElementById('mainNav');
+    nav.classList.toggle('scrolled', scrollTop > 60);
+  });
+
+  // ─── Reveal on scroll ───
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // ─── Smooth nav links ───
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
