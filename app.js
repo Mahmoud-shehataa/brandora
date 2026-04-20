@@ -41,7 +41,7 @@ const content = {
       title: 'Everything your brand needs to grow digitally.',
       text:
         'From content strategy and visual design to paid ads and social media execution, Brandora builds tailored marketing systems around your audience.',
-      panelOverline: 'What we cover',
+      // panelOverline: 'What we cover',
       panelTitle: 'Custom strategy, creative execution, measurable intent.',
       panelText:
         'Whether you sell a product, offer a service, or launch a brand from zero, we design campaigns around your niche and the people you want to reach.',
@@ -157,7 +157,7 @@ const content = {
         },
         {
           label: 'Phone',
-          value: '+966 57 463 6463',
+          value: '+966574636463',
           text: 'Reach Brandora directly.',
         },
       ],
@@ -219,7 +219,7 @@ const content = {
       title: 'كل ما تحتاجه علامتك لتنمو رقمياً.',
       text:
         'من استراتيجية المحتوى والتصميم البصري إلى إدارة الإعلانات المدفوعة والتسويق عبر وسائل التواصل، تبني براندورا منظومة تسويق مصممة حسب جمهورك.',
-      panelOverline: 'نغطي',
+      // panelOverline: 'نغطي',
       panelTitle: 'استراتيجية مخصصة، تنفيذ إبداعي، وهدف واضح.',
       panelText:
         'سواء كنت تبيع منتجاً، تقدم خدمة، أو تبني علامة من الصفر، نصمم الحملات بما يناسب مجالك والجمهور الذي تريد الوصول إليه.',
@@ -333,11 +333,11 @@ const content = {
           value: 'Brandora_ksa',
           text: 'لحضور سريع ومحتوى متجدد.',
         },
-        {
-          label: 'رقم التواصل',
-          value: '+966574636463',
-          text: 'تواصل معنا مباشرة.',
-        },
+        // {
+        //   label: 'رقم التواصل',
+        //   value: '+966574636463',
+        //   text: 'تواصل معنا مباشرة.',
+        // },
       ],
     },
     contact: {
@@ -371,7 +371,7 @@ const ids = {
   servicesKicker: document.getElementById('servicesKicker'),
   servicesTitle: document.getElementById('servicesTitle'),
   servicesText: document.getElementById('servicesText'),
-  servicesPanelOverline: document.getElementById('servicesPanelOverline'),
+  // servicesPanelOverline: document.getElementById('servicesPanelOverline'),
   servicesPanelTitle: document.getElementById('servicesPanelTitle'),
   servicesPanelText: document.getElementById('servicesPanelText'),
   servicesPanelList: document.getElementById('servicesPanelList'),
@@ -545,7 +545,7 @@ const applyLanguage = (lang) => {
   ids.servicesKicker.textContent = t.services.kicker;
   ids.servicesTitle.textContent = t.services.title;
   ids.servicesText.textContent = t.services.text;
-  ids.servicesPanelOverline.textContent = t.services.panelOverline;
+  // ids.servicesPanelOverline.textContent = t.services.panelOverline;
   ids.servicesPanelTitle.textContent = t.services.panelTitle;
   ids.servicesPanelText.textContent = t.services.panelText;
   renderList(ids.servicesPanelList, t.services.panelList);

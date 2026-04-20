@@ -532,7 +532,7 @@ html[dir="rtl"] .hero-headline::after {
   padding-block: 1rem;
   border-block: 1px solid rgba(18, 58, 143, 0.12);
   background: linear-gradient(90deg, rgba(34, 211, 197, 0.08), rgba(18, 58, 143, 0.08));
-  rotate: -2.2deg;
+  rotate: -2deg;
 }
 
 .hero-marquee-track {
@@ -583,9 +583,9 @@ html[dir="rtl"] .hero-marquee-track {
 }
 
 /* .eyebrow, */
-.section-kicker,
-.panel-kicker {
-  display: inline-flex;
+ .section-kicker
+/* .panel-kicker { */
+{  display: inline-flex;
   align-items: center;
   gap: 0.45rem;
   padding: 0.45rem 0.9rem;
@@ -597,7 +597,7 @@ html[dir="rtl"] .hero-marquee-track {
   color: var(--brand);
   background: rgba(18, 58, 143, 0.08);
   border: 1px solid rgba(18, 58, 143, 0.1);
-}
+} */
 
 .hero-text,
 .section-head p,
