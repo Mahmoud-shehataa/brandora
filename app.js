@@ -174,13 +174,13 @@ const content = {
         'Facebook / Instagram / Snapchat: brandora.kas - X / TikTok: Brandora_ksa',
     },
     footer: {
-      note: 'Brandora - story-led marketing in Arabic and English.',
+      note: 'Brandora - story-led marketing Agency',
       copyright: (year) => `Copyright ${year}. All rights reserved.`,
     },
   },
   ar: {
     metaTitle: 'براندورا | وكالة تسويق تقودها القصة',
-    metaDescription: 'براندورا وكالة تسويق تبني حضوراً رقمياً قوياً باللغتين العربية والإنجليزية.',
+    metaDescription: 'براندورا وكالة تسويق تبني حضوراً رقمياً قوياً.',
     nav: {
       home: 'الرئيسية',
       services: 'الخدمات',
@@ -352,7 +352,7 @@ const content = {
         'فيسبوك / إنستغرام / سناب: brandora.kas - إكس / تيك توك: Brandora_ksa',
     },
     footer: {
-      note: 'براندورا - تسويق تقوده القصة بالعربية والإنجليزية.',
+      note: 'براندورا - وكالة تسويق تقوده القصة.',
       copyright: (year) => `حقوق النشر ${year}. جميع الحقوق محفوظة.`,
     },
   },
