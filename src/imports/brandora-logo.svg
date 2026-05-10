@@ -1,0 +1,3 @@
+<svg width="800" height="194" viewBox="0 0 800 194" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <image width="800" height="194" xlink:href="data:image/png;base64,$(base64 -w 0 /workspaces/default/code/src/imports/brandora-logo.png)" />
+</svg>
