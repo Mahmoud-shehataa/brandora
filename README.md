@@ -52,7 +52,7 @@ Build for production:
 pnpm build
 ```
 
-The production output is generated in the `dist/` directory.
+The production output is generated in the `dist/` directory and synced to the root `index.html` plus compiled files in `assets/` for static hosting.
 
 ## Notes
 
